@@ -1,0 +1,26 @@
+def entrada_imc():
+    peso = float(input('Digite seu peso: '))
+    altura = float(input('Digite sua altura: '))
+    return peso, altura
+
+def calcular_imc(peso, altura):
+    return peso / (altura * altura)
+
+def imc_classificacao(imc):
+    if imc <= 17.0:
+        return 'Abaixo do peso'
+    elif imc <= 22.9:
+        return 'Peso normal'
+    elif imc <= 29.4:
+        return 'Sobrepeso'
+    elif imc <= 40.4:
+        return 'Obesidade'
+    else:
+        return 'Obesidade Grave'
+
+peso, altura = entrada_imc()
+imc = calcular_imc(peso, altura)
+classificacao = imc_classificacao(imc)
+
+print(f'Peso: {peso} kg | Altura: {altura} m')
+print(f'IMC: {imc} | Classificação: {classificacao}')
