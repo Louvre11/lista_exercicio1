@@ -1,0 +1,27 @@
+def classificar_triangulo(a, b, c):
+    print(f"Lados: {a}, {b}, {c}")
+    
+    if (a + b > c) and (a + c > b) and (b + c > a):
+        
+        if a == b == c:
+            print("Triângulo válido: Equilátero")
+        elif a == b or a == c or b == c:
+            print("Triângulo válido: Isósceles")
+        else:
+            print("Triângulo válido: Escaleno")
+            
+    else:
+        print("Não forma triângulo")
+    print("-" * 30)
+
+testes = [
+    (5, 5, 5),
+    (5, 5, 3),
+    (3, 4, 5),
+    (1, 2, 10),
+    (0, 5, 5),
+    (7, 7, 12),
+]
+
+for t in testes:
+    classificar_triangulo(t[0], t[1], t[2])
