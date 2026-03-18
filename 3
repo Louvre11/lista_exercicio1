@@ -1,0 +1,21 @@
+def cotacoes():
+    real = float(input('Quantidade em real: '))
+    menu = int(input('[1] Real → Dólar \n[2] Real → Euro \n[3] Real → Libra \nEscolha: '))
+    
+    dolar = real / 5.15
+    euro = real / 5.55
+    libra = real / 6.45
+    
+    if menu == 1:
+        return f'Conversão em dolar: {dolar:.2f}'
+    elif menu == 2:
+        return f'Conversão em euro: {euro:.2f}' 
+    elif menu == 3:
+        return f'Conversão em libra: {libra:.2f}'
+    else:
+        return 'Opção Inválida'
+ 
+cotacao = cotacoes()
+print(cotacao)
+ 
+ 
