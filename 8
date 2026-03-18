@@ -1,0 +1,49 @@
+def calcular_estacionamento(entrada, saida, placa_final, dia):
+
+    if saida > entrada:
+        horas = saida - entrada
+    elif saida < entrada: 
+        horas = (24 - entrada) + saida
+    else:
+
+        horas = 1
+
+    tarifa_base = 10.0 + (max(0, horas - 1) * 5.0)
+
+    is_noturno = False
+    if (entrada >= 22 or entrada < 6) or (saida > 22 or saida <= 6) or (horas > 8):
+        is_noturno = True
+    
+    valor_noturno = (tarifa_base * 0.50) if is_noturno else 0
+    total_parcial = tarifa_base + valor_noturno
+
+    desconto_segunda = 0
+    if dia.lower() == "segunda" and placa_final % 2 == 0:
+        desconto_segunda = total_parcial * 0.10
+
+    valor_final = total_parcial - desconto_segunda
+
+    print(f"=== Estacionamento ({dia.capitalize()}) ===")
+    print(f"Entrada: {entrada:02d}h | Saída: {saida:02d}h")
+    print(f"Permanência: {horas} hora(s)")
+    print(f"Tarifa base:             R$ {tarifa_base:>6.2f}")
+    
+    if is_noturno:
+        print(f"Adicional noturno (50%): R$ {valor_noturno:>6.2f}")
+    
+    if desconto_segunda > 0:
+        print(f"Desconto Placa Par (10%):-R$ {desconto_segunda:>6.2f}")
+        
+    print(f"Total:                   R$ {valor_final:>6.2f}")
+    print("-" * 35)
+
+testes = [
+    {"entrada": 14, "saida": 16, "placa_final": 3, "dia": "quarta"},
+    {"entrada": 9,  "saida": 9,  "placa_final": 7, "dia": "sexta"},
+    {"entrada": 23, "saida": 2,  "placa_final": 5, "dia": "sabado"},
+    {"entrada": 8,  "saida": 12, "placa_final": 4, "dia": "segunda"},
+    {"entrada": 20, "saida": 3,  "placa_final": 2, "dia": "segunda"},
+]
+
+for t in testes:
+    calcular_estacionamento(t["entrada"], t["saida"], t["placa_final"], t["dia"])
