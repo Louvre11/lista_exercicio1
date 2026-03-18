@@ -1,0 +1,34 @@
+def simular_saque(valor):
+    print(f"=== Saque: R$ {valor} ===")
+    
+    if valor <= 0:
+        print("Erro: O valor deve ser positivo e maior que zero.")
+        print("-" * 30)
+        return
+    
+    if valor % 10 != 0:
+        print("Erro: Valor indisponível. O caixa possui apenas notas de R$ 10, 20, 50, 100 e 200.")
+        print("-" * 30)
+        return
+
+    cedulas = [200, 100, 50, 20, 10]
+    total_cedulas_usadas = 0
+    valor_restante = valor
+
+    for nota in cedulas:
+        quantidade_nota = valor_restante // nota
+        
+        valor_restante = valor_restante % nota
+        
+        if quantidade_nota > 0:
+            print(f"R$ {nota:3}: {quantidade_nota} cédula(s)")
+            total_cedulas_usadas += quantidade_nota
+
+    print(f"Total de cédulas: {total_cedulas_usadas}")
+    print("-" * 30)
+
+
+testes = [380, 1250, 70, 15, -100, 0]
+
+for t in testes:
+    simular_saque(t)
