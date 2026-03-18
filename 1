@@ -1,0 +1,21 @@
+
+def defidor_de_idade(idade_em_anos: int,):
+    idade_em_anos = int(idade_em_anos)
+ 
+
+ 
+    if idade_em_anos < 0 or idade_em_anos > 120:
+        return "Idade inválida"
+    elif idade_em_anos <= 11:
+        return "Criança"
+    elif idade_em_anos <= 17:
+        return "Adolescente"
+    elif idade_em_anos <= 59:
+        return "Adulto"
+    else:
+        return "Idoso"
+ 
+ 
+print(defidor_de_idade(89))
+
+
