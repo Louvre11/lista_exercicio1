@@ -1,0 +1,38 @@
+def calcular_compra(valor_original, e_vip):
+    
+    if valor_original <= 100:
+        percentual_base = 0
+    elif valor_original <= 300:
+        percentual_base = 0.10  
+    elif valor_original <= 500:
+        percentual_base = 0.15  
+    else:
+        percentual_base = 0.20  
+
+    percentual_vip = 0.05 if e_vip.lower() == "sim" else 0.0
+
+    valor_desconto_base = valor_original * percentual_base
+    valor_desconto_vip = valor_original * percentual_vip
+    valor_final = valor_original - valor_desconto_base - valor_desconto_vip
+
+    print(f"=== Resumo da Compra ({'VIP' if e_vip.lower() == 'sim' else 'Normal'}) ===")
+    print(f"Valor original:  R$ {valor_original:>8.2f}")
+    print(f"Desconto ({percentual_base*100:>2.0f}%): R$ {valor_desconto_base:>8.2f}")
+    
+    if percentual_vip > 0:
+        print(f"Desconto VIP (5%): R$ {valor_desconto_vip:>8.2f}")
+    
+    print(f"Valor final:     R$ {valor_final:>8.2f}")
+    print("-" * 30)
+
+
+testes = [
+    (80.00,  "nao"),
+    (200.00, "nao"),
+    (200.00, "sim"),
+    (450.00, "nao"),
+    (1000.00, "sim"),
+]
+
+for valor, status in testes:
+    calcular_compra(valor, status)
